@@ -17,6 +17,9 @@ public class Warning extends javax.swing.JDialog {
     public Warning(javax.swing.JDialog parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setTitle("Warning");
+        this.setLocationRelativeTo(this);
+        this.setResizable(false);
     }
 
     /**

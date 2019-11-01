@@ -12,11 +12,12 @@ package inventario.Vista;
 public class productoClass {
     private String idProducto;
     private String nombreProducto;
-    private Double precio;
-    private Double stock;
+    private String precio;
+    private String stock;
     private String nombreProveedor;
-
-    public productoClass(String idProducto, String nombreProducto, Double precio, Double stock, String nombreProveedor) {
+    
+    
+    public productoClass(String idProducto, String nombreProducto, String precio, String stock, String nombreProveedor) {
         this.idProducto = idProducto;
         this.nombreProducto = nombreProducto;
         this.precio = precio;
@@ -32,11 +33,11 @@ public class productoClass {
         return nombreProducto;
     }
 
-    public Double getPrecio() {
+    public String getPrecio() {
         return precio;
     }
 
-    public Double getStock() {
+    public String getStock() {
         return stock;
     }
 

@@ -12,7 +12,7 @@ public class Cliente extends javax.swing.JDialog {
     private String direccion;
     private String telefono1;
     DefaultTableModel dtm;
-    Object[] o= new Object[4];
+    Object[] o = new Object[4];
     /**
      * Creates new form Cliente
      */
@@ -44,7 +44,7 @@ public class Cliente extends javax.swing.JDialog {
         txtNombre = new javax.swing.JTextField();
         txtDireccion = new javax.swing.JTextField();
         txtTelefono = new javax.swing.JTextField();
-        cbTelefono = new javax.swing.JComboBox<>();
+        cbTelefono = new javax.swing.JComboBox<String>();
         txtRut = new javax.swing.JTextField();
         txtDv = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -86,7 +86,7 @@ public class Cliente extends javax.swing.JDialog {
             }
         });
 
-        cbTelefono.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "+56 9", "+56 2" }));
+        cbTelefono.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "+56 9", "+56 2" }));
         cbTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbTelefonoActionPerformed(evt);
@@ -167,31 +167,14 @@ public class Cliente extends javax.swing.JDialog {
 
         tbCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Nombre", "Rut", "Dirección", "Teléfono"
+                "Nombre", "Rut", "Dirección", "Telefono"
             }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(tbCliente);
+        tbCliente.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -201,7 +184,7 @@ public class Cliente extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -209,19 +192,19 @@ public class Cliente extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        o[0]=nombre=txtNombre.getText();
-        o[1]=rut=txtRut.getText() + txtDv.getText();
-        o[2]=direccion=txtDireccion.getText();
-        o[3]=telefono1=txtTelefono.getText();
+        nombre=txtNombre.getText();
+        rut=txtRut.getText() + txtDv.getText();
+        direccion=txtDireccion.getText();
+        telefono1=cbTelefono.getSelectedItem() + txtTelefono.getText();
         
         
         if( nombre.isEmpty() || rut.isEmpty() || direccion.isEmpty() || telefono1.isEmpty() ){
@@ -229,10 +212,18 @@ public class Cliente extends javax.swing.JDialog {
             warning.setVisible(true);
             
         }else{
-            clienteClass client = new clienteClass(rut, nombre, direccion, telefono1,null,null);
+            clienteClass cliente = new clienteClass(rut, nombre, direccion, telefono1,null,null);
+            o[0] = cliente.getNombre();
+            o[1] = cliente.getRut();
+            o[2] = cliente.getDireccion();
+            o[3] = cliente.getTelefono1();
             dtm.addRow(o);
+            txtNombre.setText(null);
+            txtRut.setText(null);
+            txtDv.setText(null);
+            txtDireccion.setText(null);
+            txtTelefono.setText(null);
         }
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cbTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbTelefonoActionPerformed

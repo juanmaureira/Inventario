@@ -14,20 +14,20 @@ import java.util.Calendar;
 public class ventaClass {
     
     private String id;   
-    private Calendar fecha;
+    private String fecha;
     private String nombre;
-    private Float  descuento;
-    private Float montoFinal;
+    private String descuento;
+    private String montoFinal;
     
-    public void ventaClass(){
+    public ventaClass(){
         id = null;   
         fecha = null;
         nombre = null;
-        descuento = 0f;
-        montoFinal = 0f;           
+        descuento = null;
+        montoFinal = null;           
     }
     
-    public void ventaClass(String id, Calendar fecha,String nombre,Float descuento,Float montoFinal ){
+    public ventaClass(String id, String fecha,String nombre,String descuento,String montoFinal ){
         this.id = id;
         this.fecha = fecha;
         this.descuento = descuento;
@@ -43,15 +43,15 @@ public class ventaClass {
         return nombre;
     }
     
-    public Calendar getFecha(){
+    public String getFecha(){
         return fecha;
     }
     
-    public Float getDescuento(){
+    public String getDescuento(){
         return descuento;
     }
     
-    public Float getMontoFinal(){
+    public String getMontoFinal(){
         return montoFinal;
     }
 }
